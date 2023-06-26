@@ -1,14 +1,22 @@
-<p style="color: green"><%= notice %></p>
+<h1 class="text-center">Tweets</h1>
 
-<h1>Tweets</h1>
-
-<div id="tweets">
-  <% @tweets.each do |tweet| %>
-    <%= render tweet %>
-    <p>
-      <%= link_to "Show this tweet", tweet %>
-    </p>
+<div class="form-search">
+  <%= form_with url: tweets_path, method: :get do |form| %>
+    <%= form.text_field :query_text, value: params[:query_text], class: "form-control" %>
+    <%= form.submit "Search", class: "btn btn-primary" %>
   <% end %>
 </div>
 
-<%= link_to "New tweet", new_tweet_path %>
+<div id="tweets">
+  <% @tweets.each do |tweet| %>
+    <div class="tweet">
+      <p class="tweet-description"><%= tweet.description %></p>
+      <p class="tweet-username"><%= tweet.userName %></p>
+      <p>
+        <%= link_to "Show this tweet", tweet_url(tweet), class: "btn btn-secondary" %>
+      </p>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "New tweet", new_tweet_path, class: "btn btn-primary" %>

@@ -1,0 +1,40 @@
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Estilos para el formulario de búsqueda */
+  .form-search {
+    display: flex;
+    align-items: center;
+  }
+  
+  .form-search input[type="text"] {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-search button {
+    margin-left: 10px;
+  }
+  
+  /* Estilos para los tweets */
+  .tweet {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .tweet .tweet-description {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .tweet .tweet-username {
+    font-size: 14px;
+    color: #999;
+  }
