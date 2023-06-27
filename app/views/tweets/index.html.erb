@@ -8,15 +8,22 @@
 </div>
 
 <div id="tweets">
-  <% @tweets.each do |tweet| %>
-    <div class="tweet">
-      <p class="tweet-description"><%= tweet.description %></p>
-      <p class="tweet-username"><%= tweet.userName %></p>
-      <p>
-        <%= link_to "Show this tweet", tweet_url(tweet), class: "btn btn-secondary" %>
-      </p>
-    </div>
-  <% end %>
+  <% if @tweets.count > 0 %>
+    <% @tweets.each do |tweet| %>
+      <div class="tweet">
+        <p class="tweet-description"><%= tweet.description %></p>
+        <p class="tweet-username"><%= tweet.userName %></p>
+        <p>
+          <%= link_to "Show this tweet", tweet_url(tweet), class: "btn btn-secondary" %>
+        </p>
+      </div>
+    <% end %>
+    
+    <%= raw pagy_nav(@pagy) %>
+  
+  <% else %>
+    <h1>No existen coincidencias</h1>
+  <% end %>  
 </div>
 
 <%= link_to "New tweet", new_tweet_path, class: "btn btn-primary" %>
