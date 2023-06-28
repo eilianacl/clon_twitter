@@ -1,29 +1,34 @@
-<h1 class="text-center">Tweets</h1>
+<div class="container">
+  <h1 class="text-center">Tweets</h1>
 
-<div class="form-search">
-  <%= form_with url: tweets_path, method: :get do |form| %>
-    <%= form.text_field :query_text, value: params[:query_text], class: "form-control" %>
-    <%= form.submit "Search", class: "btn btn-primary" %>
-  <% end %>
-</div>
-
-<div id="tweets">
-  <% if @tweets.count > 0 %>
-    <% @tweets.each do |tweet| %>
-      <div class="tweet">
-        <p class="tweet-description"><%= tweet.description %></p>
-        <p class="tweet-username"><%= tweet.userName %></p>
-        <p>
-          <%= link_to "Show this tweet", tweet_url(tweet), class: "btn btn-secondary" %>
-        </p>
-      </div>
+  <div class="form-search">
+    <%= form_with url: tweets_path, method: :get, html: { class: "form-inline justify-content-center" } do |form| %>
+      <%= form.text_field :query_text, value: params[:query_text], class: "form-control mr-sm-2" %>
+      <%= form.submit "Buscar", class: "btn btn-primary my-2 my-sm-0" %>
     <% end %>
-    
-    <%= raw pagy_nav(@pagy) %>
-  
-  <% else %>
-    <h1>No existen coincidencias</h1>
-  <% end %>  
-</div>
+  </div>
 
-<%= link_to "New tweet", new_tweet_path, class: "btn btn-primary" %>
+  <div id="tweets">
+    <% if @tweets.count > 0 %>
+      <% @tweets.each do |tweet| %>
+        <div class="tweet card mb-3">
+          <div class="card-body">
+            <p class="card-text tweet-description"><%= tweet.description %></p>
+            <p class="card-text tweet-username"><%= tweet.userName %></p>
+            <p>
+              <%= link_to "Show this tweet", tweet_url(tweet), class: "btn btn-secondary" %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+
+      <nav class="pagination justify-content-center">
+        <%== pagy_bootstrap_nav(@pagy) %>
+      </nav>
+    <% else %>
+      <h1>No existen coincidencias</h1>
+    <% end %>
+  </div>
+
+  <%= link_to "New tweet", new_tweet_path, class: "btn btn-primary" %>
+</div>
